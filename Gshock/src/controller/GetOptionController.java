@@ -1,0 +1,68 @@
+package controller;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.bean.Category;
+import model.dao.CatDAO;
+import util.StringUtil;
+
+
+public class GetOptionController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public GetOptionController() {
+        super();
+   
+    }
+
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html");
+		response.setCharacterEncoding("UTF-8");
+		CatDAO catDAO = new CatDAO();
+		ArrayList<Category> listCat = catDAO.getItems();
+		parent(listCat,request,response);
+		
+	}
+	public void parent(ArrayList<Category> listCat, HttpServletRequest request, HttpServletResponse response){		
+		for(Category cat:listCat) {
+			if(cat.getParent()==0) {								
+				try {					
+					response.getWriter().print("<option value=\""+cat.getId()+"\">"+cat.getName()+"</option>");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				
+				getchild(listCat, cat.getId(),request,response);
+			}
+			
+		}
+	}
+	public void getchild(ArrayList<Category> listCat , int id ,HttpServletRequest request, HttpServletResponse response){
+		for(Category cat:listCat) {
+			if(cat.getParent()==id) {
+				try {
+					response.getWriter().print("<option value=\""+cat.getId()+"\">") ; //+"-".repeat(cat.getLever())+cat.getName()+"</option>");
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				getchild(listCat, cat.getId(),request,response);		
+			}		
+		}
+		
+	}
+}

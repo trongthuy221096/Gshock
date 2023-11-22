@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+<urlrewrite>
+	<rule>
+		<from>/(.+)-([0-9]+).html$</from>
+		<to>/detail?id=$2</to>
+	</rule>
+	<rule>
+		<from>/xoa/san-pham/([0-9]+)</from>
+		<to>/public/oderitem/remove?wid=$1</to>
+	</rule>
+	<rule>
+		<from>/them/san-pham/([0-9]+)</from>
+		<to>/public/oderitem/add?wid=$1</to>
+	</rule>
+	<rule>
+		<from>/(.+)-([0-9]+)$</from>
+		<to>/product?catid=$2</to>
+	</rule>
+	<rule>
+		<from>/thanh-toan$</from>
+		<to>/pay</to>
+	</rule>
+	<rule>
+		<from>/dang-nhap$</from>
+		<to>/login</to>
+	</rule>
+	<rule>
+		<from>/lien-he$</from>
+		<to>/contact</to>
+	</rule>
+	<rule>
+		<from>/tin-tuc$</from>
+		<to>/news</to>
+	</rule>
+	<rule>
+		<from>/cua-hang/([0-9]+)$</from>
+		<to>/store?page=$1</to>
+	</rule>
+	<rule>
+		<from>/cua-hang/tim-kiem/([0-9]+)$</from>
+		<to>/public/search?search1=$1</to>
+	</rule>
+	<rule>
+		<from>/cua-hang/tim-kiem$</from>
+		<to>/public/searchall</to>
+	</rule>
+	<rule>
+		<from>/cua-hang$</from>
+		<to>/store</to>
+	</rule>
+	<rule>
+		<from>/trang-chu$</from>
+		<to>/index</to>
+	</rule>		
+</urlrewrite>
